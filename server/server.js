@@ -1,38 +1,37 @@
-//Import packages and files
+// //Import packages and files
 import express from "express"
 import cors from "cors"
 
 
 let mockData = [
     {
-        "id": 1
-        "task": 'Buy Groceries'
+        id: 1,
+        task: 'Buy Groceries'
     },
     {
-        "id": 2
-        "task": 'Walk the dog'
+        id: 2,
+        task: 'Walk the dog'
     },
     {
-        "id": 3
-        "task": 'Save the cheerleader' //Heroes reference is baller!
+        id: 3,
+        task: 'Save the cheerleader' //Heroes reference is baller!
     },
     {
-        "id": 4
-        "task": 'Save the world'
+        id: 4,
+        task: 'Save the world'
     },
-
-    let globalId = 5
 ]
+    let globalId = 5
 
-//Setup express instance
+// //Setup express instance
 const app = express()
 
-//Setup middleware
+// //Setup middleware
 app.use(express.json())
 app.use(cors())
-appl.use(express.static('src'))
+app.use(express.static('src'))
 
-//ENDPOINTS GO HERE
+// //ENDPOINTS GO HERE
 app.get(`/toDoList`, (req, res) => {
     res.send(mockData)
 })
@@ -58,6 +57,6 @@ app.delete(`toDoList/:id`, (req, res) => {
     res.send(mockData)
 })
 
-//Open sever using app.listen
+// //Open sever using app.listen
 
-app.listen(2112, () => console.log('Sever running at http://localhost:2112'))
+app.listen(2112, () => console.log('Server running at http://localhost:2112'))
