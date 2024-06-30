@@ -1,58 +1,54 @@
-console.log(`javascript connected`)
+console.log('javascript connected')
 
 const listDisplay = document.querySelector(`#listDisplay`)
 
-const displayTheList = (arr) => {
+const displayAllListItems = (arr) => {
     listDisplay.innerHTML = ``
-    arr.ForEach((el) => {
-        const listSlot = document.createElement(`section`)
+        arr.forEach((el) => {
+            const listCard = dcoument.createElement('section')
 
-        listSlot.innerHTML = `
-        <p> ${el.name}</p>
-        
-        <section>
-            <button>-</button>
-            <button>+</button>
-        </section>
-        
-        <br/>
-        <br/>
-        
-`
+            listCard.innerHTML = `
+            <p>${el.name}</p>
 
-listDisplay.appendChild(listSlot)})
+            <section>
+                <button>-</button>
+            </section>
+
+            <br/>
+            <br/>
+            
+        <button onclick = "deleteListItem(${el.id})">Delete Me</button>
+
+            <br/>
+            <br/>
+        `
+            listDisplay.appendChild(listCard)
+        })
 }
 
-const allItems = () => {
-    axios.get('http://localhost:2112/toDoList').then((res) => {
-        console.log.log(res.data)
+const allListItems = () => {
+    axios.get('http://localhost.2112/toDoList').then((res) => {
+        console.log(res.data)
 
-        displayAllItems(res.data)
+        displayAllListItems(res.data)
     })
 }
 
 const handleSubmit = (event) => {
     event.preventDefault()
 
-    const itemTask = document.querySelector('#addTask')
+    const taskName = document.querySelector('#itemInput')
 
     const bodyObj = {
-        task: itemTask.value, 
+        task: taskName.value
     }
 
-    axios.post('http://localhost:2112/newToDo', bodyObj).then((res) => {
+    axios.post('http://localhost.2112/newToDo', bodyObj).then((res) => {
         console.log(res.data)
-        displayTheList(res.data)
+        displayAllListItems(res.data) 
     })
 }
 
-document.querySelector('form').addEventListener('submit', handleSubmit)
+document.querySelector('ul').addEventListener('submit', handleSubmit)
 
-const deleteListItem = (id) => {
-    axios.delete(`http://localhost:2112/toDoList/${id}`).then((res) => {
-        console.log(res.data)
-        displayTheList(res.data)
-    })
-}
 
-allItems()

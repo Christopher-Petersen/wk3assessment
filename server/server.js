@@ -5,31 +5,32 @@ import cors from "cors"
 
 let mockData = [
     {
-        id: 1,
-        task: 'Buy Groceries'
+       "id": 1,
+        "task": 'Buy Groceries'
     },
     {
-        id: 2,
-        task: 'Walk the dog'
+        "id": 2,
+        "task": 'Walk the dog'
     },
     {
-        id: 3,
-        task: 'Save the cheerleader' //Heroes reference is baller!
+        "id": 3,
+        "task": 'Save the cheerleader' //Heroes reference is baller!
     },
     {
-        id: 4,
-        task: 'Save the world'
+        "id": 4,
+        "task": 'Save the world'
     },
 ]
     let globalId = 5
+    
 
 // //Setup express instance
 const app = express()
 
 // //Setup middleware
+app.use(express.static('src'))
 app.use(express.json())
 app.use(cors())
-app.use(express.static('src'))
 
 // //ENDPOINTS GO HERE
 app.get(`/toDoList`, (req, res) => {
