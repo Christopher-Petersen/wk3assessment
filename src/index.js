@@ -51,4 +51,11 @@ const handleSubmit = (event) => {
 
 document.querySelector('ul').addEventListener('submit', handleSubmit)
 
+const deleteListItem = (id) => {
+    axios.delete(`http://localhost:2319/toDoList/${id}`).then((response) => {
+        console.log(response.data)
+        displayAllDrinks(response.data)
+    })
+}
 
+allListItems()
