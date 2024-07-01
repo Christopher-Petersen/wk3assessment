@@ -51,7 +51,7 @@ app.post(`newToDo`, (req, res) => {
 app.delete(`toDoList/:id`, (req, res) => {
     console.log("PARAMS", req.params)
 
-    const idToDelete = +request.params.id
+    const idToDelete = +req.params.id
     
     mockData = mockData.filter((el) => el.id != idToDelete)
 
