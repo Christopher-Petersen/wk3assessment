@@ -5,7 +5,7 @@ const listDisplay = document.querySelector(`#listDisplay`)
 const displayAllListItems = (arr) => {
     listDisplay.innerHTML = ``
         arr.forEach((el) => {
-            const listCard = dcoument.createElement('section')
+            const listCard = document.createElement('section')
 
             listCard.innerHTML = `
             <p>${el.name}</p>
@@ -54,7 +54,7 @@ document.querySelector('ul').addEventListener('submit', handleSubmit)
 const deleteListItem = (id) => {
     axios.delete(`http://localhost:2319/toDoList/${id}`).then((response) => {
         console.log(response.data)
-        displayAllDrinks(response.data)
+        displayAllListItems(response.data)
     })
 }
 
