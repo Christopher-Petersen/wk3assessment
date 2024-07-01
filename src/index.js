@@ -27,7 +27,7 @@ const displayAllListItems = (arr) => {
 }
 
 const allListItems = () => {
-    axios.get('http://localhost.2112/toDoList').then((res) => {
+    axios.get('http://localhost:2112/toDoList').then((res) => {
         console.log(res.data)
 
         displayAllListItems(res.data)
@@ -43,16 +43,19 @@ const handleSubmit = (event) => {
         task: taskName.value
     }
 
-    axios.post('http://localhost.2112/newToDo', bodyObj).then((res) => {
+    axios.post('http://localhost:2112/newToDo', bodyObj).then((res) => {
         console.log(res.data)
         displayAllListItems(res.data) 
+    })
+    .catch((err) => {
+        console.error('Error posting new task:', err)
     })
 }
 
 document.querySelector('ul').addEventListener('submit', handleSubmit)
 
 const deleteListItem = (id) => {
-    axios.delete(`http://localhost:2319/toDoList/${id}`).then((res) => {
+    axios.delete(`http://localhost:2112/toDoList/${id}`).then((res) => {
         console.log(res.data)
         displayAllListItems(res.data)
     })

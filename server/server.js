@@ -37,10 +37,10 @@ app.get(`/toDoList`, (req, res) => {
     res.send(mockData)
 })
 
-app.post(`newToDo`, (req, res) => {
+app.post(`/newToDo`, (req, res) => {
     const newListItem = {
         id: globalId,
-        task: req.body.task,
+        task: req.body.itemList,
     }
     mockData.push(newListItem)
     globalId++
@@ -48,7 +48,7 @@ app.post(`newToDo`, (req, res) => {
     res.send(mockData)
 })
 
-app.delete(`toDoList/:id`, (req, res) => {
+app.delete(`/toDoList/:id`, (req, res) => {
     console.log("PARAMS", req.params)
 
     const idToDelete = +req.params.id
